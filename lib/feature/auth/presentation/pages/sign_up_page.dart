@@ -12,6 +12,18 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final nameController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,18 +41,28 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               textAlign: TextAlign.center,
             ),
-             const SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            const AuthField(hintText: "Name"),
-             const SizedBox(
-              height: 15,
+            AuthField(
+              hintText: "Name",
+              controller: nameController,
             ),
-            const AuthField(hintText: "Email"),
             const SizedBox(
               height: 15,
             ),
-            const AuthField(hintText: "Password"),
+            AuthField(
+              hintText: "Email",
+              controller: emailController,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            AuthField(
+              hintText: "Password",
+              controller: passwordController,
+              isVisible: true,
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -53,19 +75,17 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             GestureDetector(
               onTap: () {},
-              child:  RichText(
+              child: RichText(
                 text: TextSpan(
                   text: "Don't have an account? ",
                   style: Theme.of(context).textTheme.titleMedium,
                   children: [
                     TextSpan(
-                        text: "Sign In",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(
-                                color: AppColors.gradient1,
-                                fontWeight: FontWeight.bold)),
+                      text: "Sign In",
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: AppColors.gradient2,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
               ),
