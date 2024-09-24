@@ -1,29 +1,30 @@
-import 'package:blogs_app/feature/auth/presentation/pages/sign_in_page.dart';
-import 'package:blogs_app/feature/auth/presentation/widgets/auth_field.dart';
-import 'package:blogs_app/feature/auth/presentation/widgets/auth_gradient_button.dart';
+import 'package:blogs_app/feature/auth/presentation/pages/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/theme.dart';
+import '../widgets/auth_field.dart';
+import '../widgets/auth_gradient_button.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
+
   static route() {
     return MaterialPageRoute(
-      builder: (context) => const SignUpPage(),
+      builder: (context) => const SignInPage(),
     );
   }
+
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignInPageState extends State<SignInPage> {
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
-  final nameController = TextEditingController();
 
   @override
   void dispose() {
-    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -32,9 +33,6 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: true,
-      ),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: SingleChildScrollView(
@@ -43,7 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
-                "Sign Up.",
+                "Sign In.",
                 style: TextStyle(
                   fontSize: 50,
                   fontWeight: FontWeight.w500,
@@ -52,13 +50,6 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               const SizedBox(
                 height: 30,
-              ),
-              AuthField(
-                hintText: "Name",
-                controller: nameController,
-              ),
-              const SizedBox(
-                height: 15,
               ),
               AuthField(
                 hintText: "Email",
@@ -76,7 +67,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 20,
               ),
               AuthGradientButton(
-                buttonText: "Sign up",
+                buttonText: "Sign in",
                 onPressed: () {},
               ),
               const SizedBox(
@@ -86,19 +77,22 @@ class _SignUpPageState extends State<SignUpPage> {
                 onTap: () {
                   Navigator.pushReplacement(
                     context,
-                    SignInPage.route(),
+                    SignUpPage.route(),
                   );
                 },
                 child: RichText(
                   text: TextSpan(
-                    text: "Already you have an account? ",
+                    text: "Don't have an account? ",
                     style: Theme.of(context).textTheme.titleMedium,
                     children: [
                       TextSpan(
-                        text: "Sign In",
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: AppColors.gradient2,
-                            fontWeight: FontWeight.bold),
+                        text: "Sign up",
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium
+                            ?.copyWith(
+                                color: AppColors.gradient2,
+                                fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -110,5 +104,4 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
-
 }
