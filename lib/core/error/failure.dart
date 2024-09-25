@@ -1,5 +1,5 @@
 class Failure {
   final String errorMessage;
 
-  Failure({required this.errorMessage});
+  Failure([this.errorMessage = "An unexpected error occurred "]);
 }
