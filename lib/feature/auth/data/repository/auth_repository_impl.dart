@@ -18,7 +18,7 @@ class AuthRepositoryImpl implements AuthRepository {
           name: username, email: email, password: password);
       return right(userId);
     } on ServerException catch (e) {
-      throw Left(
+      return Left(
         Failure(e.message),
       );
     }
